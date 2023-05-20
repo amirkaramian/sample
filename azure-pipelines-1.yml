@@ -25,12 +25,12 @@ stages:
         repository: $(FLASK-HUB-REPO)
         command: 'build'
         Dockerfile: '**/flask/Dockerfile'
-    # - task: Docker@2
-    #   inputs:
-    #     containerRegistry: 'dockersamplecon'
-    #     repository: 'amirkaramian/sample'
-    #     command: 'build'
-    #     Dockerfile: '**/hello-world/Dockerfile'
+    - task: Docker@2
+      inputs:
+         containerRegistry: 'dockersamplecon'
+         repository: $(HELLO-WORLD-HUB-REPO)
+         command: 'build'
+         Dockerfile: '**/hello-world/Dockerfile'
 # - stage: Push   
 #   displayName: Push image
 #   jobs:
