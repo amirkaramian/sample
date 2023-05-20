@@ -19,44 +19,35 @@ stages:
     displayName: Build
     pool: sample pool
     steps:
-      - task: DockerCompose@0
-        inputs:
-          action: 'Build services'
-          containerregistrytype: 'Container Registry'
-          dockerRegistryEndpoint: 'dockersamplecon'
-          dockerComposeFile: 'docker-compose.yml'
-          projectName: $(Build.Repository.Name)
-          qualifyImageNames: true                    
-      
-    # - task: Docker@2
-    #   inputs:
-    #     containerRegistry: 'dockersamplecon'
-    #     repository: $(FLASK-HUB-REPO)
-    #     command: 'build'
-    #     Dockerfile: '**/flask/Dockerfile'
-    # - task: Docker@2
-    #   inputs:
-    #      containerRegistry: 'dockersamplecon'
-    #      repository: $(HELLO-WORLD-HUB-REPO)
-    #      command: 'build'
-    #      Dockerfile: '**/hello-world/Dockerfile'
-# - stage: Push   
-#   displayName: Push image
-#   jobs:
-#   - job: Push
-#     displayName: Push
-#     pool: sample pool
-#     steps:
-#     - task: Docker@2
-#       inputs:
-#         containerRegistry: 'dockersamplecon'
-#         repository:  $(FLASK-HUB-REPO)
-#         command: 'Push'
-#         Dockerfile: '**/flask/Dockerfile' 
-#     - task: Docker@2
-#       inputs:
-#         containerRegistry: 'dockersamplecon'
-#         repository: $(HELLO-WORLD-HUB-REPO)
-#         command: 'Push'
-#         Dockerfile: '**/hello-world/Dockerfile'
+    - task: Docker@2
+      inputs:
+        containerRegistry: 'dockersamplecon'
+        repository: $(FLASK-HUB-REPO)
+        command: 'build'
+        Dockerfile: '**/flask/Dockerfile'
+    - task: Docker@2
+      inputs:
+         containerRegistry: 'dockersamplecon'
+         repository: $(HELLO-WORLD-HUB-REPO)
+         command: 'build'
+         Dockerfile: '**/hello-world/Dockerfile'
+- stage: Push   
+  displayName: Push image
+  jobs:
+  - job: Push
+    displayName: Push
+    pool: sample pool
+    steps:
+    - task: Docker@2
+      inputs:
+        containerRegistry: 'dockersamplecon'
+        repository:  $(FLASK-HUB-REPO)
+        command: 'Push'
+        Dockerfile: '**/flask/Dockerfile' 
+    - task: Docker@2
+      inputs:
+        containerRegistry: 'dockersamplecon'
+        repository: $(HELLO-WORLD-HUB-REPO)
+        command: 'Push'
+        Dockerfile: '**/hello-world/Dockerfile'
 
