@@ -12,25 +12,25 @@ variables:
   tag: 'latest'
 
 stages:
-# - stage: Build
-#   displayName: Build image
-#   jobs:
-#   - job: Build
-#     displayName: Build
-#     pool: sample pool
-#     steps:
-#     - task: Docker@2
-#       inputs:
-#         containerRegistry: 'dockersamplecon'
-#         repository: $(FLASK-HUB-REPO)
-#         command: 'build'
-#         Dockerfile: '**/flask/Dockerfile'
-#     - task: Docker@2
-#       inputs:
-#          containerRegistry: 'dockersamplecon'
-#          repository: $(HELLO-WORLD-HUB-REPO)
-#          command: 'build'
-#          Dockerfile: '**/hello-world/Dockerfile'
+- stage: Build
+  displayName: Build image
+  jobs:
+  - job: Build
+    displayName: Build
+    pool: sample pool
+    steps:
+    - task: Docker@2
+      inputs:
+        containerRegistry: 'dockersamplecon'
+        repository: $(FLASK-HUB-REPO)
+        command: 'build'
+        Dockerfile: '**/flask/Dockerfile'
+    - task: Docker@2
+      inputs:
+         containerRegistry: 'dockersamplecon'
+         repository: $(HELLO-WORLD-HUB-REPO)
+         command: 'build'
+         Dockerfile: '**/hello-world/Dockerfile'
 - stage: Push   
   displayName: Push image
   jobs:
@@ -38,18 +38,25 @@ stages:
     displayName: Push
     pool: sample pool
     steps:
-    # - task: Docker@2
-    #   inputs:
-    #     containerRegistry: 'dockersamplecon'
-    #     repository:  $(FLASK-HUB-REPO)
-    #     command: 'Push'
-    #     Dockerfile: '**/flask/Dockerfile' 
-    # - task: Docker@2
-    #   inputs:
-    #     containerRegistry: 'dockersamplecon'
-    #     repository: $(HELLO-WORLD-HUB-REPO)
-    #     command: 'Push'
-    #     Dockerfile: '**/hello-world/Dockerfile'
+    - task: Docker@2
+      inputs:
+        containerRegistry: 'dockersamplecon'
+        repository:  $(FLASK-HUB-REPO)
+        command: 'Push'
+        Dockerfile: '**/flask/Dockerfile' 
+    - task: Docker@2
+      inputs:
+        containerRegistry: 'dockersamplecon'
+        repository: $(HELLO-WORLD-HUB-REPO)
+        command: 'Push'
+        Dockerfile: '**/hello-world/Dockerfile'
+- stage: Publish   
+  displayName: Push image
+  jobs:
+  - job: Publish
+    displayName: Publish
+    pool: sample pool
+    steps:        
     - task: PublishPipelineArtifact@1
       inputs:
         targetPath: '$(Pipeline.Workspace)'
