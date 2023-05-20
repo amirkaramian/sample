@@ -5,9 +5,9 @@ services:
   hello-world:
     container_name: hello-world
     image: amirkaramian/sample:latest
-    # build:
-      # context: ./hello-world
-      # dockerfile: Dockerfile
+     build:
+       context: ./hello-world
+       dockerfile: Dockerfile
     # volumes:
       # - '.:/app'
       # - '/app/node_modules'
@@ -18,7 +18,7 @@ services:
   hello:
     container_name: hello
     image: amirkaramian/sample2:latest
-    #build: ./flask
+    build: ./flask
     ports:
       - "5000:5000"
     volumes:
