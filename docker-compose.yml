@@ -5,12 +5,12 @@ services:
   hello-world:
     container_name: hello-world
     image: amirkaramian/sample:latest
-     build:
+    build:
        context: ./hello-world
        dockerfile: Dockerfile
-    # volumes:
-      # - '.:/app'
-      # - '/app/node_modules'
+     # volumes:
+       # - '.:/app'
+       # - '/app/node_modules'
     ports:
       - 3000:3000
     environment:
@@ -22,4 +22,4 @@ services:
     ports:
       - "5000:5000"
     volumes:
-      - .:/code      
+      - .:/code     
