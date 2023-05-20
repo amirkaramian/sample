@@ -24,6 +24,5 @@ stages:
         containerregistrytype: 'Container Registry'
         dockerRegistryEndpoint: 'dockersample'
         dockerComposeFile: '**/docker-compose.yml'
-        action: 'Run a Docker Compose command'
-        dockerComposeCommand: 'build'
+        action: 'Build services'     
             
