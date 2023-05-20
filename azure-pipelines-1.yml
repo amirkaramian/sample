@@ -21,10 +21,13 @@ stages:
     steps:
       - task: DockerCompose@0
         inputs:
+          action: 'Build services'
           containerregistrytype: 'Container Registry'
           dockerRegistryEndpoint: 'dockersamplecon'
-          dockerComposeFile: '**/docker-compose.yml'
-          action: 'Build services'
+          dockerComposeFile: 'docker-compose.yml'
+          projectName: $(Build.Repository.Name)
+          qualifyImageNames: true                    
+      
     # - task: Docker@2
     #   inputs:
     #     containerRegistry: 'dockersamplecon'
