@@ -25,5 +25,5 @@ stages:
         dockerRegistryEndpoint: 'dockersample'
         dockerComposeFile: '**/docker-compose.yml'
         action: 'Run a Docker Compose command'
-        dockerComposeCommand: 'build'
+        dockerComposeCommand: 'up -d --build'
             
