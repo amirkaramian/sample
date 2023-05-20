@@ -19,11 +19,6 @@ stages:
     displayName: Build
     pool: sample pool
     steps:
-     - task: DockerCompose@0
-       inputs:
-         containerregistrytype: 'Container Registry'
-         dockerRegistryEndpoint: 'dockersample'
-         dockerComposeFile: '**/docker-compose.yml'
-         action: 'Run a Docker Compose command'
-         dockerComposeCommand: 'build'
+      - script: docker-compose build
+        displayName: Docker Compose Scan   
             
