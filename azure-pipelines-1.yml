@@ -31,22 +31,22 @@ stages:
          repository: $(HELLO-WORLD-HUB-REPO)
          command: 'build'
          Dockerfile: '**/hello-world/Dockerfile'
-# - stage: Push   
-#   displayName: Push image
-#   jobs:
-#   - job: Push
-#     displayName: Push
-#     pool: sample pool
-#     steps:
-#     - task: Docker@2
-#       inputs:
-#         containerRegistry: 'dockersamplecon'
-#         repository: 'amirkaramian/sample2'
-#         command: 'Push'
-#         Dockerfile: '**/flask/Dockerfile' 
-#     - task: Docker@2
-#       inputs:
-#         containerRegistry: 'dockersamplecon'
-#         repository: 'amirkaramian/sample'
-#         command: 'Push'
-#         Dockerfile: '**/hello-world/Dockerfile'            
+- stage: Push   
+  displayName: Push image
+  jobs:
+  - job: Push
+    displayName: Push
+    pool: sample pool
+    steps:
+    - task: Docker@2
+      inputs:
+        containerRegistry: 'dockersamplecon'
+        repository:  $(FLASK-HUB-REPO)
+        command: 'Push'
+        Dockerfile: '**/flask/Dockerfile' 
+    - task: Docker@2
+      inputs:
+        containerRegistry: 'dockersamplecon'
+        repository: $(HELLO-WORLD-HUB-REPO)
+        command: 'Push'
+        Dockerfile: '**/hello-world/Dockerfile'            
