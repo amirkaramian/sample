@@ -17,10 +17,13 @@ stages:
   jobs:
   - job: Build
     displayName: Build
-    pool: sample pool
+    pool:
+      vmImage: ubuntu-latest
     steps:
-      - script: docker-compose build
-        displayName: Docker Compose Scan 
-      - script: docker-compose up -d
-        displayName: Docker Compose Scan        
-            
+    - task: Docker@2
+      displayName: Build an image
+      inputs:
+        command: build
+        dockerfile: '$(Build.SourcesDirectory)/flask/Dockerfile'
+        tags: |
+          $(tag)
