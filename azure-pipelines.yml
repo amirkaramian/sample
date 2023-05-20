@@ -25,6 +25,5 @@ stages:
          dockerRegistryEndpoint: 'dockersample'
          dockerComposeFile: '**/docker-compose.yml'
          action: 'Run a Docker Compose command'
-         dockerComposeCommand: '--no-ansi   build '
-         arguments: '--no-ansi   build '
+         dockerComposeCommand: 'build'
             
