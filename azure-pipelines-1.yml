@@ -38,22 +38,22 @@ stages:
     displayName: Push
     pool: sample pool
     steps:
-    - task: Docker@2
-      inputs:
-        containerRegistry: 'dockersamplecon'
-        repository:  $(FLASK-HUB-REPO)
-        command: 'Push'
-        Dockerfile: '**/flask/Dockerfile' 
-    - task: Docker@2
-      inputs:
-        containerRegistry: 'dockersamplecon'
-        repository: $(HELLO-WORLD-HUB-REPO)
-        command: 'Push'
-        Dockerfile: '**/hello-world/Dockerfile'
+    # - task: Docker@2
+    #   inputs:
+    #     containerRegistry: 'dockersamplecon'
+    #     repository:  $(FLASK-HUB-REPO)
+    #     command: 'Push'
+    #     Dockerfile: '**/flask/Dockerfile' 
+    # - task: Docker@2
+    #   inputs:
+    #     containerRegistry: 'dockersamplecon'
+    #     repository: $(HELLO-WORLD-HUB-REPO)
+    #     command: 'Push'
+    #     Dockerfile: '**/hello-world/Dockerfile'
     - task: PublishPipelineArtifact@1
       inputs:
         targetPath: '$(Pipeline.Workspace)'
         artifact: 'amirkaramian.sample (1)'
-        publishLocation: 'filepath'
-        fileSharePath: 'docker-compose_prod.yml'
+        publishLocation: 'pipeline'
+        
 
