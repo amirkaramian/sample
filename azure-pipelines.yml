@@ -20,5 +20,7 @@ stages:
     pool: sample pool
     steps:
       - script: docker-compose build
-        displayName: Docker Compose Scan   
+        displayName: Docker Compose Scan 
+      - script: docker-compose up -d
+        displayName: Docker Compose Scan        
             
