@@ -50,4 +50,10 @@ stages:
         repository: $(HELLO-WORLD-HUB-REPO)
         command: 'Push'
         Dockerfile: '**/hello-world/Dockerfile'
+    - task: PublishPipelineArtifact@1
+      inputs:
+        targetPath: '$(Pipeline.Workspace)'
+        artifact: 'amirkaramian.sample (1)'
+        publishLocation: 'filepath'
+        fileSharePath: 'docker-compose_prod.yml'
 
